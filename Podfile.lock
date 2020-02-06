@@ -1,0 +1,20 @@
+PODS:
+  - KYDrawerController (2.1.0)
+  - SnapKit (4.2.0)
+
+DEPENDENCIES:
+  - KYDrawerController
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KYDrawerController
+    - SnapKit
+
+SPEC CHECKSUMS:
+  KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+
+PODFILE CHECKSUM: c842778ba0e83cb7d54e5706138c8bc37fe59715
+
+COCOAPODS: 1.7.5
