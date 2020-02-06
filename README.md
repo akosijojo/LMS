@@ -1,1 +1,1 @@
-LMS git
+Sample App
