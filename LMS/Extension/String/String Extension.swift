@@ -11,15 +11,16 @@ import UIKit
 extension String {
     func checkLengthAndCalculateHeight(prefix: Int? = nil,width: CGFloat,font: UIFont) -> CGFloat {
         if self.count > 0 {
+            var replaceText = self.replacingOccurrences(of: "i", with: "a")
             if let pref = prefix {
                 if self.count >= pref {
-                    let text = "\(self)... Read more"
-                    return String(describing: text.prefix(pref)).height(withConstrainedWidth: width, font: font) + 40
+                    let text = "\(replaceText)... Read more"
+                    return String(describing: text.prefix(pref)).height(withConstrainedWidth: width, font: font) + 20
                 }
             }
             
-            let text = "\(self) Read less"
-            return text.height(withConstrainedWidth: width, font: font) + 40
+            let text = "\(replaceText) Read less"
+            return text.height(withConstrainedWidth: width, font: font) + 20
         }
         
         return 0

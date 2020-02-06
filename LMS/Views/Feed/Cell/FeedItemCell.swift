@@ -27,6 +27,7 @@ class FeedItemCell : BaseCell<FeedItemData> , UITextViewDelegate , FeedActionVie
             self.pollAndImageView.fileAttachmentData = self.data?.postAttachment
             self.pollAndImageView.pollData = self.data?.pollData
             
+            self.webAttachmentView.data = self.data?.postLink
            
             if let post =  data?.post {
                 self.setUpPostText(post: post, extended: expanded)
@@ -59,6 +60,11 @@ class FeedItemCell : BaseCell<FeedItemData> , UITextViewDelegate , FeedActionVie
         v.isSelectable = true
 //        v.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 10)
         v.isScrollEnabled = false
+        return v
+    }()
+    
+    lazy var webAttachmentView : FeedWebView = {
+        let v = FeedWebView()
         return v
     }()
     
@@ -120,9 +126,17 @@ class FeedItemCell : BaseCell<FeedItemData> , UITextViewDelegate , FeedActionVie
             make.height.equalTo(0)
         }
         
+        addSubview(webAttachmentView)
+        webAttachmentView.snp.makeConstraints { (make) in
+            make.top.equalTo(post.snp.bottom)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(120)
+        }
+               
         addSubview(pollAndImageView)
         pollAndImageView.snp.makeConstraints { (make) in
-           make.top.equalTo(post.snp.bottom)
+            make.top.equalTo(post.snp.bottom)
            make.leading.equalTo(self)
            make.trailing.equalTo(self)
            make.height.equalTo(0)
@@ -183,14 +197,24 @@ class FeedItemCell : BaseCell<FeedItemData> , UITextViewDelegate , FeedActionVie
 
 // Image Collection and Poll Collection Action
 extension FeedItemCell {
-    func hideShowImageView(dataFile: FeedFileAttachmentData?,dataPoll : [FeedPollData] = []) {
+    func hideShowImageView(dataFile: FeedFileAttachmentData?,dataPoll : [FeedPollData] = [],isShowWebPreview : Bool) {
+        if isShowWebPreview {
+            webAttachmentView.isHidden = false
+        }else {
+            webAttachmentView.isHidden = true
+        }
+        
         if (dataFile?.data.count ?? 0) > 0 || dataPoll.count > 0  {
             var collectionHeight : CGFloat = 0
             collectionHeight = dataFile?.type == 1 ? ((dataFile?.data.count ?? 0) > 0 ? self.frame.width : 0) : 100
             collectionHeight += calculateHeightOfPoll(data: dataPoll)
             
             self.pollAndImageView.snp.remakeConstraints { (make) in
-                make.top.equalTo(post.snp.bottom)
+                if isShowWebPreview {
+                    make.top.equalTo(webAttachmentView.snp.bottom).offset(isShowWebPreview ? 10 : 0)
+                }else {
+                    make.top.equalTo(post.snp.bottom)
+                }
                 make.leading.equalTo(self)
                 make.trailing.equalTo(self)
                 make.height.equalTo(collectionHeight)
@@ -204,13 +228,18 @@ extension FeedItemCell {
                        
         }else {
             self.pollAndImageView.snp.remakeConstraints { (make) in
-                make.top.equalTo(post.snp.bottom)
+                if isShowWebPreview {
+                    make.top.equalTo(webAttachmentView.snp.bottom).offset(isShowWebPreview ? 10 : 0)
+                }else {
+                    make.top.equalTo(post.snp.bottom)
+                }
                 make.leading.equalTo(self)
                 make.trailing.equalTo(self)
                 make.height.equalTo(0)
             }
             self.setUpDesc(text: "")
         }
+      
     }
     
     
@@ -294,5 +323,4 @@ extension UITextView {
     open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false
     }
-    
 }

@@ -47,6 +47,8 @@
 		3A32406523C744E5002A418A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32406423C744E5002A418A /* FeedViewController.swift */; };
 		3A32406723C744EE002A418A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32406623C744EE002A418A /* ChatViewController.swift */; };
 		3A32406A23C74500002A418A /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32406923C74500002A418A /* NotificationViewController.swift */; };
+		3A41D47E23EC09C6001E41CD /* FeedWebLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A41D47D23EC09C6001E41CD /* FeedWebLinkCell.swift */; };
+		3A41D48023EC0E06001E41CD /* FeedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A41D47F23EC0E06001E41CD /* FeedWebView.swift */; };
 		3ABCC8BA23D0A809009C8DDE /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCC8B923D0A809009C8DDE /* PostingViewController.swift */; };
 		3ABCC8BD23D0AAC8009C8DDE /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCC8BC23D0AAC8009C8DDE /* BaseTabViewController.swift */; };
 		3ABCC8C523D0B787009C8DDE /* FeedItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCC8C423D0B787009C8DDE /* FeedItemData.swift */; };
@@ -124,6 +126,8 @@
 		3A32406423C744E5002A418A /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3A32406623C744EE002A418A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		3A32406923C74500002A418A /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		3A41D47D23EC09C6001E41CD /* FeedWebLinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWebLinkCell.swift; sourceTree = "<group>"; };
+		3A41D47F23EC0E06001E41CD /* FeedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWebView.swift; sourceTree = "<group>"; };
 		3A65F45E23D9AE6A00AB75DA /* LMS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LMS.entitlements; sourceTree = "<group>"; };
 		3ABCC8B923D0A809009C8DDE /* PostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 		3ABCC8BC23D0AAC8009C8DDE /* BaseTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
@@ -568,6 +572,7 @@
 				3A07965C23EA9532003A503B /* FeedPollCell.swift */,
 				3A07966023EB2008003A503B /* FeedFileViewCell.swift */,
 				3A07966223EB2452003A503B /* FeedVideoCell.swift */,
+				3A41D47D23EC09C6001E41CD /* FeedWebLinkCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -593,6 +598,7 @@
 			children = (
 				3ACA994B23D6FD4C0074E1D7 /* FeedActionView.swift */,
 				3A07965E23EA982A003A503B /* FeedCollectionData.swift */,
+				3A41D47F23EC0E06001E41CD /* FeedWebView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -789,6 +795,7 @@
 				3A03B26023C6FDA200F1B004 /* Network.swift in Sources */,
 				3A03B24E23C6FBB000F1B004 /* LoginModel.swift in Sources */,
 				3A03B26B23C7017800F1B004 /* ViewControllerExtension.swift in Sources */,
+				3A41D47E23EC09C6001E41CD /* FeedWebLinkCell.swift in Sources */,
 				3ACA994623D6B1D40074E1D7 /* String Extension.swift in Sources */,
 				3A07966323EB2452003A503B /* FeedVideoCell.swift in Sources */,
 				3A03B24C23C6FBAB00F1B004 /* LoginViewController.swift in Sources */,
@@ -804,6 +811,7 @@
 				3A03B27123C701C800F1B004 /* Custom Views.swift in Sources */,
 				3A03B27C23C70AA300F1B004 /* ForgotPasswordViewController.swift in Sources */,
 				3ABCC8C523D0B787009C8DDE /* FeedItemData.swift in Sources */,
+				3A41D48023EC0E06001E41CD /* FeedWebView.swift in Sources */,
 				3A1E682B23CF12340012BC67 /* CustomTabBarController.swift in Sources */,
 				3A32406A23C74500002A418A /* NotificationViewController.swift in Sources */,
 				3A07965F23EA982A003A503B /* FeedCollectionData.swift in Sources */,
@@ -1003,11 +1011,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9X2593SH8B;
 				INFOPLIST_FILE = LMS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.oa.LMS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LMS.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1023,11 +1032,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9X2593SH8B;
 				INFOPLIST_FILE = LMS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.oa.LMS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LMS.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

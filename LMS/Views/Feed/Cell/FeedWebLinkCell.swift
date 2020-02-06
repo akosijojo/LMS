@@ -1,5 +1,5 @@
 //
-//  FeedFileViewCell.swift
+//  FeedWebLinkCell.swift
 //  LMS
 //
 //  Created by Jojo Destreza on 2/6/20.
@@ -8,22 +8,19 @@
 
 import UIKit
 
-protocol FeedFileViewCellAction : class {
-    func filePreview(cell: FeedFileViewCell,data : FeedFileData?)
-    func fileViewers(cell: FeedFileViewCell,data : FeedFileData?)
-    func fileDownloads(cell: FeedFileViewCell,data : FeedFileData?)
+struct FeedWebLinkData {
+   var name : String?
+   var desc : String?
+   var img : String?
+   var url : String?
 }
 
-class FeedFileViewCell : BaseCell<FeedFileData> {
-    
-    override var data: FeedFileData? {
+class FeedWebLinkCell : BaseCell<FeedWebLinkData> {
+    override var data: FeedWebLinkData? {
         didSet {
-            self.fileName.text = self.data?.name
-            self.img.image = UIImage(named: self.data?.img ?? "doc")
+            self.name.text = self.data?.name
         }
     }
-    
-    var delegate : FeedFileViewCellAction?
     
     lazy var container : UIView = {
         let v = UIView()
@@ -37,20 +34,17 @@ class FeedFileViewCell : BaseCell<FeedFileData> {
         return img
     }()
     
-    lazy var fileName : UILabel = {
+    lazy var name : UILabel = {
        let lbl = UILabel()
         lbl.font = UIFont(name: Fonts.bold, size: 16)
-        lbl.adjustsFontSizeToFitWidth = true
-        lbl.minimumScaleFactor = 0.4
-        lbl.text = "File Name"
+        lbl.text = "Web Name"
+        lbl.textColor = Config().colors.blueBgColor
        return lbl
     }()
     
-    lazy var fileDesc : UILabel = {
+    lazy var desc : UILabel = {
         let lbl = UILabel()
          lbl.font = UIFont(name: Fonts.regular, size: 16)
-         lbl.adjustsFontSizeToFitWidth = true
-         lbl.minimumScaleFactor = 0.4
          lbl.text = "Description hahahah ahwdihaw dioahwoi dahwoidh aoiwdhoa iwdhoaihw doaiwhdioahw dioahwoi dhaowid"
         lbl.numberOfLines = 2
         return lbl
@@ -60,41 +54,38 @@ class FeedFileViewCell : BaseCell<FeedFileData> {
     override func setupView() {
         addSubview(container)
         container.snp.makeConstraints { (make) in
-            make.top.equalTo(self)
+            make.top.equalTo(self).offset(10)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
-            make.bottom.equalTo(self)
+            make.bottom.equalTo(self).offset(-10)
         }
         
         container.addSubview(img)
         img.snp.makeConstraints { (make) in
             make.centerY.equalTo(container)
             make.leading.equalTo(container)
-            make.width.height.equalTo(80)
+            make.width.height.equalTo(100)
         }
         
-        container.addSubview(fileName)
-        fileName.snp.makeConstraints { (make) in
+        container.addSubview(name)
+        name.snp.makeConstraints { (make) in
             make.top.equalTo(container).offset(10)
             make.leading.equalTo(img.snp.trailing).offset(10)
             make.trailing.equalTo(self)
             make.height.equalTo(20)
         }
         
-        container.addSubview(fileDesc)
-        fileDesc.snp.makeConstraints { (make) in
-            make.top.equalTo(fileName.snp.bottom)
+        container.addSubview(desc)
+        desc.snp.makeConstraints { (make) in
+            make.top.equalTo(name.snp.bottom)
             make.leading.equalTo(img.snp.trailing).offset(10)
             make.trailing.equalTo(container)
             make.bottom.equalTo(container)
         }
         
-        let onClickFile = UITapGestureRecognizer(target: self, action: #selector(onClickFileAction))
-        container.isUserInteractionEnabled = true
-        container.addGestureRecognizer(onClickFile)
+//        let onClickFile = UITapGestureRecognizer(target: self, action: #selector(onClickFileAction))
+//        container.isUserInteractionEnabled = true
+//        container.addGestureRecognizer(onClickFile)
     }
     
-    @objc func onClickFileAction() {
-        self.delegate?.filePreview(cell: self, data: self.data)
-    }
 }

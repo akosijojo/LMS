@@ -42,6 +42,7 @@ class FeedCollectionData : UIView , UICollectionViewDelegateFlowLayout, UICollec
                     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellFile, for: indexPath) as? FeedFileViewCell else {
                       return UICollectionViewCell()
                     }
+                    cell.delegate = self
                     cell.data = self.fileAttachmentData?.data[0]
                     return cell
                 }
@@ -52,6 +53,14 @@ class FeedCollectionData : UIView , UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func pollSetUp(indexPath : IndexPath) -> UICollectionViewCell {
+// for voting
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellPoll, for: indexPath) as? FeedPollVotingCell else {
+//            return UICollectionViewCell()
+//        }
+//        cell.data = self.pollData?[indexPath.item]
+//        cell.delegate = self
+//        return cell
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellPoll, for: indexPath) as? FeedPollCell else {
             return UICollectionViewCell()
         }
@@ -127,3 +136,27 @@ class FeedCollectionData : UIView , UICollectionViewDelegateFlowLayout, UICollec
     }
     
 }
+
+
+extension FeedCollectionData : FeedFileViewCellAction {
+    func filePreview(cell: FeedFileViewCell, data: FeedFileData?) {
+        print("Previewing File")
+    }
+    
+    func fileViewers(cell: FeedFileViewCell, data: FeedFileData?) {
+        
+    }
+    
+    func fileDownloads(cell: FeedFileViewCell, data: FeedFileData?) {
+        
+    }
+}
+
+
+extension FeedCollectionData : FeedPollVotingCellAction {
+    func onClickVote(cell: FeedPollVotingCell, data: FeedPollData?) {
+        cell.checkBox.backgroundColor = Config().colors.blueBgColor
+        print("Click Voting")
+    }
+}
+

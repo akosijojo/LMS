@@ -14,13 +14,13 @@ struct FeedItemData {
     var post : String? = ""
     var postAttachment : FeedFileAttachmentData
     var pollData : [FeedPollData] = []
-    var postLink : String? = ""
+    var postLink : FeedWebLinkData?
     var postVideo : String? = ""
     var datePost : CGFloat? = 0
     var comments : Int? = 0
     var likes : Int? = 0
     
-    init(name : String? = "",img: String? = "", post : String? = "", postAttachment : FeedFileAttachmentData,poll: [FeedPollData] = [], postLink : String? = "", postVideo : String? = "", datePost : CGFloat? = 0, comments : Int? = 0, likes : Int? = 0) {
+    init(name : String? = "",img: String? = "", post : String? = "", postAttachment : FeedFileAttachmentData,poll: [FeedPollData] = [], postLink : FeedWebLinkData? = nil , postVideo : String? = "", datePost : CGFloat? = 0, comments : Int? = 0, likes : Int? = 0) {
         
         self.name = name
         self.img = img
