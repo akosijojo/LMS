@@ -62,7 +62,7 @@ struct ColorSet: ColorContract {
     }
     
     public var mediumGrayBackground: UIColor {
-        return UIColor(hex: "a9a9a9")
+        return UIColor(hex: "C0C0C0")
     }
     
     public var borderColor: UIColor {

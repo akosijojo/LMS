@@ -13,9 +13,9 @@ class BaseTabViewController : UIViewController {
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 5
+        layout.minimumLineSpacing = 10
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        v.backgroundColor = Config().colors.lightGraybackground
+        v.backgroundColor = Config().colors.mediumGrayBackground
         return v
     }()
     

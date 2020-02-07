@@ -56,6 +56,35 @@ class FeedFileViewCell : BaseCell<FeedFileData> {
         return lbl
     }()
     
+    lazy var button : UIButton = {
+       let v = UIButton()
+        v.titleLabel?.font = UIFont(name: Fonts.regular, size: 14)
+        v.setTitle("Preview", for: .normal)
+        v.setTitleColor(Config().colors.whiteBackground, for: .normal)
+        v.backgroundColor = Config().colors.blueBgColor
+        v.layer.borderWidth = 1
+        v.layer.borderColor = Config().colors.lightBlueBgColor.cgColor
+       return v
+    }()
+    
+    lazy var downloads : UILabel = {
+        let v = UILabel()
+        v.font = UIFont(name: Fonts.bold, size: 10)
+        v.text = "10+ Downloads"
+        v.textColor = Config().colors.textColorLight
+        v.textAlignment = .center
+        return v
+    }()
+    
+    lazy var viewers :  UILabel = {
+        let v = UILabel()
+        v.font = UIFont(name: Fonts.bold, size: 10)
+        v.text = "10+ Viewers"
+        v.textColor = Config().colors.textColorLight
+        v.textAlignment = .center
+        return v
+    }()
+    
     
     override func setupView() {
         addSubview(container)
@@ -75,19 +104,44 @@ class FeedFileViewCell : BaseCell<FeedFileData> {
         
         container.addSubview(fileName)
         fileName.snp.makeConstraints { (make) in
-            make.top.equalTo(container).offset(10)
+            make.top.equalTo(container).offset(20)
             make.leading.equalTo(img.snp.trailing).offset(10)
             make.trailing.equalTo(self)
             make.height.equalTo(20)
         }
         
-        container.addSubview(fileDesc)
-        fileDesc.snp.makeConstraints { (make) in
-            make.top.equalTo(fileName.snp.bottom)
+        container.addSubview(button)
+        button.snp.makeConstraints { (make) in
+            make.top.equalTo(fileName.snp.bottom).offset(20)
             make.leading.equalTo(img.snp.trailing).offset(10)
-            make.trailing.equalTo(container)
-            make.bottom.equalTo(container)
+            make.width.equalTo(100)
+            make.height.equalTo(20)
         }
+        button.layer.cornerRadius = 5
+        let width = (self.frame.width - 40 - 200) / 2
+        container.addSubview(downloads)
+        downloads.snp.makeConstraints { (make) in
+            make.top.equalTo(fileName.snp.bottom).offset(20)
+            make.leading.equalTo(button.snp.trailing).offset(10)
+            make.width.equalTo(width)
+            make.height.equalTo(20)
+        }
+        
+        container.addSubview(viewers)
+        viewers.snp.makeConstraints { (make) in
+            make.top.equalTo(fileName.snp.bottom).offset(20)
+            make.leading.equalTo(downloads.snp.trailing).offset(10)
+            make.width.equalTo(width)
+           make.height.equalTo(20)
+        }
+        
+//        container.addSubview(fileDesc)
+//        fileDesc.snp.makeConstraints { (make) in
+//            make.top.equalTo(fileName.snp.bottom)
+//            make.leading.equalTo(img.snp.trailing).offset(10)
+//            make.trailing.equalTo(container)
+//            make.bottom.equalTo(container)
+//        }
         
         let onClickFile = UITapGestureRecognizer(target: self, action: #selector(onClickFileAction))
         container.isUserInteractionEnabled = true

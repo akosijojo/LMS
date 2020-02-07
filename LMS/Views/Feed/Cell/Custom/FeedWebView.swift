@@ -52,6 +52,15 @@ class FeedWebView : UIView {
         return lbl
     }()
     
+    lazy var viewers :  UILabel = {
+        let v = UILabel()
+        v.font = UIFont(name: Fonts.bold, size: 10)
+        v.text = "10+ Viewers"
+        v.textColor = Config().colors.textColorLight
+        v.textAlignment = .right
+        return v
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -78,6 +87,7 @@ class FeedWebView : UIView {
             make.leading.equalTo(container).offset(10)
             make.width.height.equalTo(100)
         }
+        img.backgroundColor = Config().colors.lightGraybackground
         
         container.addSubview(name)
         name.snp.makeConstraints { (make) in
@@ -93,6 +103,14 @@ class FeedWebView : UIView {
             make.leading.equalTo(img.snp.trailing).offset(10)
             make.trailing.equalTo(container).offset(-10)
             make.bottom.equalTo(container).offset(-10)
+        }
+        
+        container.addSubview(viewers)
+        viewers.snp.makeConstraints { (make) in
+            make.height.equalTo(20)
+            make.width.equalTo(100)
+            make.trailing.equalTo(container).offset(-10)
+            make.bottom.equalTo(container).offset(-5)
         }
         
         let onClickFile = UITapGestureRecognizer(target: self, action: #selector(onClickFileAction))
