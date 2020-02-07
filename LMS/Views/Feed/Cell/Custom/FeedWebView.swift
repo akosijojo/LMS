@@ -55,7 +55,7 @@ class FeedWebView : UIView {
     lazy var viewers :  UILabel = {
         let v = UILabel()
         v.font = UIFont(name: Fonts.bold, size: 10)
-        v.text = "10+ Viewers"
+        v.text = "10+ Views"
         v.textColor = Config().colors.textColorLight
         v.textAlignment = .right
         return v
